@@ -22,22 +22,24 @@ const LanguageSelector: React.FC = () => {
           </option>
         ))}
       </select>
-      <button
-        className={`${styles.flagButton} ${currentLanguage === 'ur' ? styles.active : ''}`}
-        onClick={() => changeLanguage('ur')}
-        title={t('urdu')}
-        aria-label={t('urdu')}
-      >
-        🇵🇰 {/* Pakistan flag as Urdu is primarily spoken there */}
-      </button>
-      <button
-        className={`${styles.flagButton} ${currentLanguage === 'en' ? styles.active : ''}`}
-        onClick={() => changeLanguage('en')}
-        title={t('english')}
-        aria-label={t('english')}
-      >
-        🇺🇸 {/* US flag for English */}
-      </button>
+      <div className={styles.flagButtons}>
+        <button
+          className={`${styles.flagButton} ${currentLanguage === 'ur' ? styles.active : ''}`}
+          onClick={() => changeLanguage('ur')}
+          title={t('urdu')}
+          aria-label={t('urdu')}
+        >
+          🇵🇰 {/* Pakistan flag as Urdu is primarily spoken there */}
+        </button>
+        <button
+          className={`${styles.flagButton} ${currentLanguage === 'en' ? styles.active : ''}`}
+          onClick={() => changeLanguage('en')}
+          title={t('english')}
+          aria-label={t('english')}
+        >
+          🇺🇸 {/* US flag for English */}
+        </button>
+      </div>
     </div>
   );
 };

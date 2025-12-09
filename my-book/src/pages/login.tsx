@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { useUser } from '../contexts/UserContext';
-import { useLanguage } from '../contexts/LanguageContext';
+import { UserProvider, useUser } from '../contexts/UserContext';
+import { LanguageProvider, useLanguage } from '../contexts/LanguageContext';
 import Layout from '@theme/Layout';
 import styles from './login.module.css';
 
-const LoginPage = () => {
+// Separate component for the login functionality that requires context
+const LoginComponent = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
@@ -84,6 +85,17 @@ const LoginPage = () => {
         </div>
       </div>
     </Layout>
+  );
+};
+
+// Wrapper component that provides the necessary contexts
+const LoginPage = () => {
+  return (
+    <LanguageProvider>
+      <UserProvider>
+        <LoginComponent />
+      </UserProvider>
+    </LanguageProvider>
   );
 };
 

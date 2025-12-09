@@ -75,12 +75,14 @@ const config: Config = {
     colorMode: {
       respectPrefersColorScheme: true,
     },
+    scripts: [
+      {
+        src: '/js/language-switcher.js',
+        async: true,
+      },
+    ],
     navbar: {
       title: 'Humanoid Robotics Book',
-      logo: {
-        alt: 'Humanoid Robotics Book Logo',
-        src: 'img/logo.svg',
-      },
       items: [
         {
           type: 'docSidebar',
@@ -96,15 +98,13 @@ const config: Config = {
           items: [
             {
               label: 'English',
-              href: '#',
+              to: '/?lang=en',
               className: 'language-switcher-item',
-              'data-lang': 'en'
             },
             {
               label: 'اردو',
-              href: '#',
+              to: '/?lang=ur',
               className: 'language-switcher-item',
-              'data-lang': 'ur'
             }
           ],
         },
@@ -114,7 +114,7 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://github.com/humanoid-robotics-book/humanoid-robotics-book',
+          href: 'https://github.com/Samia-Mohsin/Physical-AI-Humaniod-Robotics-Book',
           label: 'GitHub',
           position: 'right',
         },

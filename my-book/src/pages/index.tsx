@@ -4,13 +4,12 @@ import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import HomepageHeader from '@site/src/components/HomepageHeader';
-import Heading from '@theme/Heading';
-
 import styles from './index.module.css';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Home(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
+  const { t } = useLanguage();
   return (
     <Layout
       title={`Home | ${siteConfig.title}`}
@@ -21,30 +20,25 @@ export default function Home(): ReactNode {
           <div className="container">
             <div className="row">
               <div className="col col--12 text--center">
-                <img
-                  className={styles.heroLogo}
-                  src={useBaseUrl('/img/logo.svg')}
-                  alt="Humanoid Robotics Book Logo"
-                />
                 <h1 className={styles.heroTitle}>{siteConfig.title}</h1>
                 <p className={styles.heroSubtitle}>
-                  Complete Interactive Robotics Education - From ROS2 fundamentals to autonomous humanoid systems with voice control
+                  {t('complete')} {t('interactive')} {t('robotics')} {t('education')} - {t('from')} {t('ros2')} {t('fundamentals')} {t('to')} {t('autonomous')} {t('humanoid')} {t('systems')} {t('with')} {t('voice')} {t('control')}
                 </p>
                 <div className={styles.heroButtons}>
                   <Link
                     className={`${styles.heroButton} ${styles.primaryButton}`}
                     to="/docs/module-1-ros2/chapter-1-architecture">
-                    Start Learning
+                    {t('start_learning')}
                   </Link>
                   <Link
                     className={`${styles.heroButton} ${styles.secondaryButton}`}
                     to="/docs/chapter1">
-                    Explore Curriculum
+                    {t('explore')} {t('curriculum')}
                   </Link>
                   <Link
                     className={`${styles.heroButton} ${styles.secondaryButton}`}
                     to="/docs">
-                    View All Content
+                    {t('view')} {t('all')} {t('content')}
                   </Link>
                 </div>
               </div>
@@ -58,126 +52,19 @@ export default function Home(): ReactNode {
             <div className={styles.statsContainer}>
               <div className={styles.statItem}>
                 <div className={styles.statNumber}>4</div>
-                <div className={styles.statLabel}>Comprehensive Modules</div>
+                <div className={styles.statLabel}>{t('comprehensive')} {t('modules')}</div>
               </div>
               <div className={styles.statItem}>
                 <div className={styles.statNumber}>20+</div>
-                <div className={styles.statLabel}>Hands-on Projects</div>
+                <div className={styles.statLabel}>{t('hands_on')} {t('projects')}</div>
               </div>
               <div className={styles.statItem}>
                 <div className={styles.statNumber}>50+</div>
-                <div className={styles.statLabel}>Expert Tutorials</div>
+                <div className={styles.statLabel}>{t('expert')} {t('tutorials')}</div>
               </div>
               <div className={styles.statItem}>
                 <div className={styles.statNumber}>100%</div>
-                <div className={styles.statLabel}>Practical Learning</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Key Features Section */}
-        <section className={styles.features}>
-          <div className="container padding-vert--xl">
-            <div className="text--center padding-bottom--lg">
-              <h2 className={styles.featureTitle}>Complete Interactive Robotics Education</h2>
-              <p className="hero__subtitle">From ROS2 fundamentals to autonomous humanoid systems with voice control</p>
-            </div>
-
-            <div className="row">
-              <div className="col col--4">
-                <div className="card padding--lg text--center">
-                  <div className="text--center padding-bottom--md">
-                    <div className="avatar avatar--vertical">
-                      <div className="avatar__intro">
-                        <h3 className="avatar__name">4 Comprehensive Modules</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <p>Progress from ROS2 architecture to Vision-Language-Action systems. Master humanoid robot development from middleware to AI brain.</p>
-                </div>
-              </div>
-
-              <div className="col col--4">
-                <div className="card padding--lg text--center">
-                  <div className="text--center padding-bottom--md">
-                    <div className="avatar avatar--vertical">
-                      <div className="avatar__intro">
-                        <h3 className="avatar__name">Code-Ready Instructions</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <p>Step-by-step pipelines with ready-to-use code examples for ROS2, Gazebo, Isaac Sim, Whisper, and GPT-based planners.</p>
-                </div>
-              </div>
-
-              <div className="col col--4">
-                <div className="card padding--lg text--center">
-                  <div className="text--center padding-bottom--md">
-                    <div className="avatar avatar--vertical">
-                      <div className="avatar__intro">
-                        <h3 className="avatar__name">Capstone Project</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <p>Build a simulated humanoid robot that executes voice commands, performs navigation, and manipulates objects in realistic environments.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Technology Stack Section */}
-        <section className={clsx(styles.features, styles.alternateBackground)}>
-          <div className="container padding-vert--xl">
-            <div className="text--center padding-bottom--lg">
-              <h2 className={styles.featureTitle}>Advanced Technology Stack</h2>
-              <p className="hero__subtitle">Simulation-first approach with industry-standard tools</p>
-            </div>
-
-            <div className="row">
-              <div className="col col--3">
-                <div className="card padding--md text--center">
-                  <h3>ROS 2</h3>
-                  <p>Middleware for humanoid robot control: nodes, topics, services, actions</p>
-                  <div className="padding-top--sm">
-                    <span className="badge badge--primary">Architecture</span>
-                    <span className="badge badge--secondary margin-left--sm">rclpy</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col col--3">
-                <div className="card padding--md text--center">
-                  <h3>NVIDIA Isaac</h3>
-                  <p>AI perception, SLAM, navigation, and behavior systems</p>
-                  <div className="padding-top--sm">
-                    <span className="badge badge--primary">VSLAM</span>
-                    <span className="badge badge--secondary margin-left--sm">Segmentation</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col col--3">
-                <div className="card padding--md text--center">
-                  <h3>Simulation</h3>
-                  <p>Gazebo & Unity for physics and realistic testing</p>
-                  <div className="padding-top--sm">
-                    <span className="badge badge--primary">Physics</span>
-                    <span className="badge badge--secondary margin-left--sm">Sensors</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col col--3">
-                <div className="card padding--md text--center">
-                  <h3>VLA Systems</h3>
-                  <p>Vision-Language-Action integration for voice control</p>
-                  <div className="padding-top--sm">
-                    <span className="badge badge--primary">Voice</span>
-                    <span className="badge badge--secondary margin-left--sm">LLM</span>
-                  </div>
-                </div>
+                <div className={styles.statLabel}>{t('practical')} {t('learning')}</div>
               </div>
             </div>
           </div>
@@ -187,33 +74,33 @@ export default function Home(): ReactNode {
         <section className={styles.learningPathSection}>
           <div className="container padding-vert--xl">
             <div className="text--center padding-bottom--lg">
-              <h2 className={styles.featureTitle}>Your Learning Journey</h2>
-              <p className="hero__subtitle">Structured path from beginner to expert in humanoid robotics</p>
+              <h2 className={styles.featureTitle}>{t('your')} {t('learning')} {t('journey')}</h2>
+              <p className="hero__subtitle">{t('structured')} {t('path')} {t('from')} {t('beginner')} {t('to')} {t('expert')} {t('in')} {t('humanoid')} {t('robotics')}</p>
             </div>
 
             <div className={styles.learningPathSteps}>
               <div className={styles.learningStep}>
                 <div className={styles.stepNumber}>1</div>
-                <h3 className={styles.stepTitle}>Foundation</h3>
-                <p className={styles.stepDescription}>Learn ROS2 fundamentals, architecture, and core concepts needed for humanoid robotics.</p>
+                <h3 className={styles.stepTitle}>{t('foundation')}</h3>
+                <p className={styles.stepDescription}>{t('learn')} {t('ros2')} {t('fundamentals')}, {t('architecture')}, {t('and')} {t('core')} {t('concepts')} {t('needed')} {t('for')} {t('humanoid')} {t('robotics')}.</p>
               </div>
 
               <div className={styles.learningStep}>
                 <div className={styles.stepNumber}>2</div>
-                <h3 className={styles.stepTitle}>Simulation</h3>
-                <p className={styles.stepDescription}>Master Gazebo and Unity environments for realistic robot testing and development.</p>
+                <h3 className={styles.stepTitle}>{t('simulation')}</h3>
+                <p className={styles.stepDescription}>{t('master')} {t('gazebo')} {t('and')} {t('unity')} {t('environments')} {t('for')} {t('realistic')} {t('robot')} {t('testing')} {t('and')} {t('development')}.</p>
               </div>
 
               <div className={styles.learningStep}>
                 <div className={styles.stepNumber}>3</div>
-                <h3 className={styles.stepTitle}>AI Integration</h3>
-                <p className={styles.stepDescription}>Implement perception, navigation, and decision-making systems using NVIDIA Isaac.</p>
+                <h3 className={styles.stepTitle}>{t('ai')} {t('integration')}</h3>
+                <p className={styles.stepDescription}>{t('implement')} {t('perception')}, {t('navigation')}, {t('and')} {t('decision')}-{t('making')} {t('systems')} {t('using')} {t('nvidia')} {t('isaac')}.</p>
               </div>
 
               <div className={styles.learningStep}>
                 <div className={styles.stepNumber}>4</div>
-                <h3 className={styles.stepTitle}>VLA Systems</h3>
-                <p className={styles.stepDescription}>Build robots that understand and respond to human commands through voice and vision.</p>
+                <h3 className={styles.stepTitle}>{t('vla')} {t('systems')}</h3>
+                <p className={styles.stepDescription}>{t('build')} {t('robots')} {t('that')} {t('understand')} {t('and')} {t('respond')} {t('to')} {t('human')} {t('commands')} {t('through')} {t('voice')} {t('and')} {t('vision')}.</p>
               </div>
             </div>
           </div>
@@ -223,41 +110,41 @@ export default function Home(): ReactNode {
         <section className={styles.testimonialsSection}>
           <div className="container padding-vert--xl">
             <div className="text--center padding-bottom--lg">
-              <h2 className={styles.featureTitle}>What Our Learners Say</h2>
-              <p className="hero__subtitle">Join thousands of robotics enthusiasts mastering humanoid systems</p>
+              <h2 className={styles.featureTitle}>{t('what')} {t('our')} {t('learners')} {t('say')}</h2>
+              <p className="hero__subtitle">{t('join')} {t('thousands')} {t('of')} {t('robotics')} {t('enthusiasts')} {t('mastering')} {t('humanoid')} {t('systems')}</p>
             </div>
 
             <div className="row">
               <div className="col col--4">
                 <div className={styles.testimonialCard}>
-                  <p className={styles.testimonialText}>"This course transformed my understanding of humanoid robotics. The hands-on approach with real code examples made complex concepts accessible."</p>
-                  <p className={styles.testimonialAuthor}>- Alex Johnson, Robotics Engineer</p>
+                  <p className={styles.testimonialText}>"{t('this')} {t('course')} {t('transformed')} {t('my')} {t('understanding')} {t('of')} {t('humanoid')} {t('robotics')}. {t('the')} {t('hands')} {t('on')} {t('approach')} {t('with')} {t('real')} {t('code')} {t('examples')} {t('made')} {t('complex')} {t('concepts')} {t('accessible')}."</p>
+                  <p className={styles.testimonialAuthor}>- {t('alex')} {t('johnson')}, {t('robotics')} {t('engineer')}</p>
                 </div>
               </div>
 
               <div className="col col--4">
                 <div className={styles.testimonialCard}>
-                  <p className={styles.testimonialText}>"The VLA systems module was particularly impressive. I built a robot that responds to voice commands in just two weeks!"</p>
-                  <p className={styles.testimonialAuthor}>- Sarah Chen, AI Researcher</p>
+                  <p className={styles.testimonialText}>"{t('the')} {t('vla')} {t('vlasystems')} {t('module')} {t('was')} {t('particularly')} {t('impressive')}. {t('i')} {t('built')} {t('a')} {t('robot')} {t('which')} {t('responds')} {t('to')} {t('voice')} {t('in')} {t('just')} {t('two')} {t('weeks')}!"</p>
+                  <p className={styles.testimonialAuthor}>- {t('sarah')} {t('chen')}, {t('ai')} {t('researcher')}</p>
                 </div>
               </div>
 
               <div className="col col--4">
                 <div className={styles.testimonialCard}>
-                  <p className={styles.testimonialText}>"The capstone project gave me the portfolio pieces I needed to land my dream job at a robotics startup."</p>
-                  <p className={styles.testimonialAuthor}>- Michael Rodriguez, Mechatronics Specialist</p>
+                  <p className={styles.testimonialText}>"{t('the')} {t('capstone')} {t('project')} {t('gave')} {t('me')} {t('the')} {t('portfolio')} {t('pieces')} {t('i')} {t('needed')} {t('land')} {t('dream')} {t('job')} {t('at')} {t('startup')}."</p>
+                  <p className={styles.testimonialAuthor}>- {t('michael')} {t('rodriguez')}, {t('mechatronics')} {t('specialist')}</p>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Intelligent Assistance Section */}
-        <section className={styles.features}>
+        {/* Key Features Section */}
+        <section className={clsx(styles.features, styles.alternateBackground)}>
           <div className="container padding-vert--xl">
             <div className="text--center padding-bottom--lg">
-              <h2 className={styles.featureTitle}>Intelligent Content Assistance</h2>
-              <p className="hero__subtitle">Embedded RAG chatbot for chapter-specific explanations</p>
+              <h2 className={styles.featureTitle}>{t('complete')} {t('interactive')} {t('robotics')} {t('education')}</h2>
+              <p className="hero__subtitle">{t('from')} {t('ros2')} {t('fundamentals')} {t('to')} {t('autonomous')} {t('humanoid')} {t('systems')} {t('with')} {t('voice')} {t('control')}</p>
             </div>
 
             <div className="row">
@@ -266,11 +153,11 @@ export default function Home(): ReactNode {
                   <div className="text--center padding-bottom--md">
                     <div className="avatar avatar--vertical">
                       <div className="avatar__intro">
-                        <h3 className="avatar__name">Conversational AI</h3>
+                        <h3 className="avatar__name">4 {t('comprehensive')} {t('modules')}</h3>
                       </div>
                     </div>
                   </div>
-                  <p>Get answers to your questions with our RAG chatbot that understands the book's content and provides contextual responses.</p>
+                  <p>{t('progress')} {t('from')} {t('ros2')} {t('architecture')} {t('to')} {t('vision')}-{t('language')}-{t('action')} {t('systems')}. {t('master')} {t('humanoid')} {t('robot')} {t('development')} {t('from')} {t('middleware')} {t('to')} {t('ai')} {t('brain')}.</p>
                 </div>
               </div>
 
@@ -279,11 +166,11 @@ export default function Home(): ReactNode {
                   <div className="text--center padding-bottom--md">
                     <div className="avatar avatar--vertical">
                       <div className="avatar__intro">
-                        <h3 className="avatar__name">Chapter-Specific</h3>
+                        <h3 className="avatar__name">{t('code')}-{t('ready')} {t('instructions')}</h3>
                       </div>
                     </div>
                   </div>
-                  <p>Receive accurate answers based on the specific chapter you're studying with references to relevant concepts and examples.</p>
+                  <p>{t('step')}-{t('by')}-{t('step')} {t('pipelines')} {t('with')} {t('ready')} {t('to')} {t('use')} {t('code')} {t('examples')} {t('for')} {t('ros2')}, {t('gazebo')}, {t('isaac')} {t('sim')}, {t('whisper')}, {t('and')} {t('gpt')}-{t('based')} {t('planners')}.</p>
                 </div>
               </div>
 
@@ -292,11 +179,67 @@ export default function Home(): ReactNode {
                   <div className="text--center padding-bottom--md">
                     <div className="avatar avatar--vertical">
                       <div className="avatar__intro">
-                        <h3 className="avatar__name">External Knowledge</h3>
+                        <h3 className="avatar__name">{t('capstone')} {t('project')}</h3>
                       </div>
                     </div>
                   </div>
-                  <p>Access integrated external knowledge sources to deepen your understanding of robotics concepts and applications.</p>
+                  <p>{t('build')} {t('a')} {t('simulated')} {t('humanoid')} {t('robot')} {t('that')} {t('execute')} {t('commands')}, {t('performs')} {t('navigation')}, {t('and')} {t('manipulates')} {t('objects')} {t('in')} {t('realistic')} {t('environments')}.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Technology Stack Section */}
+        <section className={styles.features}>
+          <div className="container padding-vert--xl">
+            <div className="text--center padding-bottom--lg">
+              <h2 className={styles.featureTitle}>{t('advanced')} {t('technology')} {t('stack')}</h2>
+              <p className="hero__subtitle">{t('simulation')}-{t('first')} {t('approach')} {t('with')} {t('industry')}-{t('standard')} {t('tools')}</p>
+            </div>
+
+            <div className="row">
+              <div className="col col--3">
+                <div className="card padding--md text--center">
+                  <h3>{t('ros2')}</h3>
+                  <p>{t('middleware')} {t('for')} {t('humanoid')} {t('robot')} {t('control')}: {t('nodes')}, {t('topics')}, {t('services')}, {t('actions')}</p>
+                  <div className="padding-top--sm">
+                    <span className="badge badge--primary">{t('architecture')}</span>
+                    <span className="badge badge--secondary margin-left--sm">rclpy</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col col--3">
+                <div className="card padding--md text--center">
+                  <h3>{t('nvidia')} {t('isaac')}</h3>
+                  <p>{t('ai')} {t('perception')}, {t('slam')}, {t('navigation')}, {t('and')} {t('behavior')} {t('systems')}</p>
+                  <div className="padding-top--sm">
+                    <span className="badge badge--primary">VSLAM</span>
+                    <span className="badge badge--secondary margin-left--sm">{t('segmentation')}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col col--3">
+                <div className="card padding--md text--center">
+                  <h3>{t('simulation')}</h3>
+                  <p>{t('gazebo')} {t('&')} {t('unity')} {t('for')} {t('physics')} {t('and')} {t('realistic')} {t('testing')}</p>
+                  <div className="padding-top--sm">
+                    <span className="badge badge--primary">{t('physics')}</span>
+                    <span className="badge badge--secondary margin-left--sm">{t('sensors')}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col col--3">
+                <div className="card padding--md text--center">
+                  <h3>{t('vla')} {t('systems')}</h3>
+                  <p>{t('vision')}-{t('language')}-{t('action')} {t('integration')} {t('for')} {t('voice')} {t('control')}</p>
+                  <div className="padding-top--sm">
+                    <span className="badge badge--primary">{t('voice')}</span>
+                    <span className="badge badge--secondary margin-left--sm">{t('llm')}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -307,24 +250,24 @@ export default function Home(): ReactNode {
         <section className={styles.modulesPreview}>
           <div className="container padding-vert--xl">
             <div className="text--center padding-bottom--xl">
-              <h2>Complete Course Curriculum</h2>
-              <p className="hero__subtitle">Structured learning path from fundamentals to advanced concepts with hands-on projects</p>
+              <h2>{t('complete')} {t('course')} {t('curriculum')}</h2>
+              <p className="hero__subtitle">{t('structured')} {t('learning')} {t('path')} {t('from')} {t('fundamentals')} {t('to')} {t('advanced')} {t('concepts')} {t('with')} {t('hands')} {t('on')} {t('projects')}</p>
             </div>
 
             <div className="row">
               <div className="col col--3">
                 <div className="card module-card">
                   <div className="card__header text--center">
-                    <h3>Module 1: The Robotic Nervous System (ROS 2)</h3>
+                    <h3>{t('module_1_title')}</h3>
                   </div>
                   <div className="card__body">
-                    <p>Master ROS 2 architecture, nodes, topics, services, and actions. Build your first robotic applications with industry-standard tools.</p>
+                    <p>{t('master')} {t('ros2')} {t('architecture')}, {t('nodes')}, {t('topics')}, {t('services')}, {t('and')} {t('actions')}. {t('build')} {t('your')} {t('first')} {t('robotic')} {t('applications')} {t('with')} {t('industry')}-{t('standard')} {t('tools')}.</p>
                   </div>
                   <div className="card__footer">
                     <Link
                       className="button button--primary button--block"
                       to="/docs/module-1-ros2/chapter-1-architecture">
-                      Start Learning
+                      {t('start_learning')}
                     </Link>
                   </div>
                 </div>
@@ -333,16 +276,16 @@ export default function Home(): ReactNode {
               <div className="col col--3">
                 <div className="card module-card">
                   <div className="card__header text--center">
-                    <h3>Module 2: The Digital Twin (Gazebo & Unity)</h3>
+                    <h3>{t('module_2_title')}</h3>
                   </div>
                   <div className="card__body">
-                    <p>Develop in realistic environments with Gazebo and Unity. Master physics simulation, sensor modeling, and virtual testing.</p>
+                    <p>{t('develop')} {t('in')} {t('realistic')} {t('environments')} {t('with')} {t('gazebo')} {t('and')} {t('unity')}. {t('master')} {t('physics')} {t('simulation')}, {t('sensor')} {t('modeling')}, {t('and')} {t('virtual')} {t('testing')}.</p>
                   </div>
                   <div className="card__footer">
                     <Link
                       className="button button--primary button--block"
                       to="/docs/module-2-simulation/chapter-1-gazebo-setup">
-                      Start Learning
+                      {t('start_learning')}
                     </Link>
                   </div>
                 </div>
@@ -351,16 +294,16 @@ export default function Home(): ReactNode {
               <div className="col col--3">
                 <div className="card module-card">
                   <div className="card__header text--center">
-                    <h3>Module 3: The AI-Robot Brain (NVIDIA Isaac)</h3>
+                    <h3>{t('module_3_title')}</h3>
                   </div>
                   <div className="card__body">
-                    <p>Implement perception systems, navigation, and AI behavior using NVIDIA Isaac. Create intelligent robot decision-making.</p>
+                    <p>{t('implement')} {t('perception')} {t('systems')}, {t('navigation')}, {t('and')} {t('ai')} {t('behavior')} {t('using')} {t('nvidia')} {t('isaac')}. {t('create')} {t('intelligent')} {t('robot')} {t('decision')}-{t('making')}.</p>
                   </div>
                   <div className="card__footer">
                     <Link
                       className="button button--primary button--block"
                       to="/docs/module-3-ai-brain/chapter-1-isaac-sim-setup">
-                      Start Learning
+                      {t('start_learning')}
                     </Link>
                   </div>
                 </div>
@@ -369,16 +312,16 @@ export default function Home(): ReactNode {
               <div className="col col--3">
                 <div className="card module-card">
                   <div className="card__header text--center">
-                    <h3>Module 4: Vision-Language-Action (VLA)</h3>
+                    <h3>{t('module_4_title')}</h3>
                   </div>
                   <div className="card__body">
-                    <p>Integrate vision, language, and action systems. Build robots that understand and respond to human commands.</p>
+                    <p>{t('integrate')} {t('vision')}, {t('language')}, {t('and')} {t('action')} {t('systems')}. {t('build')} {t('robots')} {t('that')} {t('understand')} {t('and')} {t('respond')} {t('to')} {t('human')} {t('commands')}.</p>
                   </div>
                   <div className="card__footer">
                     <Link
                       className="button button--primary button--block"
                       to="/docs/module-4-vla/chapter-1-vla-overview">
-                      Start Learning
+                      {t('start_learning')}
                     </Link>
                   </div>
                 </div>
@@ -390,7 +333,7 @@ export default function Home(): ReactNode {
               <Link
                 className="button button--secondary button--lg"
                 to="/docs">
-                Browse All Chapters & Content
+                {t('browse')} {t('all')} {t('chapters')} {t('&')} {t('content')}
               </Link>
             </div>
           </div>
@@ -401,22 +344,22 @@ export default function Home(): ReactNode {
           <div className="container padding-vert--xl">
             <div className="row">
               <div className="col col--6">
-                <h2>Capstone Project: Autonomous Humanoid Robot</h2>
-                <p className="hero__subtitle">Integrate everything you've learned into a complete humanoid system</p>
+                <h2>{t('capstone_project')}: {t('autonomous_humanoid')}</h2>
+                <p className="hero__subtitle">{t('integrate')} {t('everything')} {t('you')} {t('ve')} {t('learned')} {t('into')} {t('a')} {t('complete')} {t('humanoid')} {t('system')}</p>
                 <ul>
-                  <li>Voice command processing and natural language understanding</li>
-                  <li>Environmental perception and spatial reasoning</li>
-                  <li>Autonomous navigation and manipulation</li>
-                  <li>Safe operation with fallback behaviors</li>
-                  <li>Complete system integration and deployment</li>
-                  <li>Working ROS2 project with simulation environment</li>
-                  <li>Architecture diagram and demo video deliverables</li>
+                  <li>{t('voice')} {t('command')} {t('processing')} {t('and')} {t('natural')} {t('language')} {t('understanding')}</li>
+                  <li>{t('environmental')} {t('perception')} {t('and')} {t('spatial')} {t('reasoning')}</li>
+                  <li>{t('autonomous')} {t('navigation')} {t('and')} {t('manipulation')}</li>
+                  <li>{t('safe')} {t('operation')} {t('with')} {t('fallback')} {t('behaviors')}</li>
+                  <li>{t('complete')} {t('system')} {t('integration')} {t('and')} {t('deployment')}</li>
+                  <li>{t('working')} {t('ros2')} {t('project')} {t('with')} {t('simulation')} {t('environment')}</li>
+                  <li>{t('architecture')} {t('diagram')} {t('and')} {t('demo')} {t('video')} {t('deliverables')}</li>
                 </ul>
                 <div className="padding-top--md">
                   <Link
                     className="button button--primary button--lg"
                     to="/docs/capstone-project/intro">
-                    Explore Capstone
+                    {t('explore')} {t('capstone')}
                   </Link>
                 </div>
               </div>
@@ -425,11 +368,11 @@ export default function Home(): ReactNode {
                   <img
                     className="avatar__photo avatar__photo--xl"
                     src={useBaseUrl('/img/undraw_docusaurus_react.svg')}
-                    alt="Humanoid Robot"
+                    alt={t('humanoid')} {t('robot')}
                   />
                   <div className="avatar__intro">
-                    <h3 className="avatar__name">Complete Integration</h3>
-                    <small>Bringing all systems together</small>
+                    <h3 className="avatar__name">{t('complete')} {t('integration')}</h3>
+                    <small>{t('bringing')} {t('all')} {t('systems')} {t('together')}</small>
                   </div>
                 </div>
               </div>
@@ -440,24 +383,24 @@ export default function Home(): ReactNode {
         {/* Community Section */}
         <section className={styles.communitySection}>
           <div className="container padding-vert--xl">
-            <h2 className={styles.communityTitle}>Join Our Robotics Community</h2>
+            <h2 className={styles.communityTitle}>{t('join')} {t('our')} {t('robotics')} {t('community')}</h2>
             <div className={styles.communityCards}>
               <div className={styles.communityCard}>
                 <div className={styles.communityIcon}>👥</div>
-                <h3>Active Forums</h3>
-                <p>Connect with fellow learners and experts to discuss challenges and solutions in humanoid robotics.</p>
+                <h3>{t('active')} {t('forums')}</h3>
+                <p>{t('connect')} {t('with')} {t('fellow')} {t('learners')} {t('and')} {t('experts')} {t('to')} {t('discuss')} {t('challenges')} {t('and')} {t('solutions')} {t('in')} {t('humanoid')} {t('robotics')}.</p>
               </div>
 
               <div className={styles.communityCard}>
                 <div className={styles.communityIcon}>🎓</div>
-                <h3>Expert Mentorship</h3>
-                <p>Get guidance from industry professionals with years of experience in robotics development.</p>
+                <h3>{t('expert')} {t('mentorship')}</h3>
+                <p>{t('get')} {t('guidance')} {t('from')} {t('industry')} {t('professionals')} {t('with')} {t('years')} {t('of')} {t('experience')} {t('in')} {t('robotics')} {t('development')}.</p>
               </div>
 
               <div className={styles.communityCard}>
                 <div className={styles.communityIcon}>🚀</div>
-                <h3>Project Showcase</h3>
-                <p>Share your creations and learn from others' innovative humanoid robot implementations.</p>
+                <h3>{t('project')} {t('showcase')}</h3>
+                <p>{t('share')} {t('your')} {t('creations')} {t('and')} {t('learn')} {t('from')} {t('others')} {t('innovative')} {t('implementations')}.</p>
               </div>
             </div>
           </div>
@@ -467,8 +410,8 @@ export default function Home(): ReactNode {
         <section className={styles.features}>
           <div className="container padding-vert--xl">
             <div className="text--center padding-bottom--lg">
-              <h2 className={styles.featureTitle}>Advanced Learning Features</h2>
-              <p className="hero__subtitle">Personalized education with analytics and international accessibility</p>
+              <h2 className={styles.featureTitle}>{t('advanced')} {t('learning')} {t('features')}</h2>
+              <p className="hero__subtitle">{t('personalized')} {t('education')} {t('with')} {t('analytics')} {t('and')} {t('international')} {t('accessibility')}</p>
             </div>
 
             <div className="row">
@@ -477,11 +420,11 @@ export default function Home(): ReactNode {
                   <div className="text--center padding-bottom--md">
                     <div className="avatar avatar--vertical">
                       <div className="avatar__intro">
-                        <h3 className="avatar__name">Advanced Analytics</h3>
+                        <h3 className="avatar__name">{t('advanced')} {t('analytics')}</h3>
                       </div>
                     </div>
                   </div>
-                  <p>Track your progress with detailed analytics and receive personalized learning path recommendations based on your performance.</p>
+                  <p>{t('track')} {t('your')} {t('with')} {t('detailed')} {t('and')} {t('receive')} {t('personalized')} {t('learning')} {t('path')} {t('recommendations')} {t('based')} {t('on')} {t('your')} {t('performance')}.</p>
                 </div>
               </div>
 
@@ -490,11 +433,11 @@ export default function Home(): ReactNode {
                   <div className="text--center padding-bottom--md">
                     <div className="avatar avatar--vertical">
                       <div className="avatar__intro">
-                        <h3 className="avatar__name">Localization</h3>
+                        <h3 className="avatar__name">{t('localization')}</h3>
                       </div>
                     </div>
                   </div>
-                  <p>Content available in multiple languages including Urdu to enable international accessibility and diverse learning communities.</p>
+                  <p>{t('content')} {t('available')} {t('in')} {t('multiple')} {t('languages')} {t('including')} {t('urdu')} {t('to')} {t('enable')} {t('international')} {t('accessibility')} {t('and')} {t('diverse')} {t('learning')} {t('communities')}.</p>
                 </div>
               </div>
 
@@ -503,11 +446,11 @@ export default function Home(): ReactNode {
                   <div className="text--center padding-bottom--md">
                     <div className="avatar avatar--vertical">
                       <div className="avatar__intro">
-                        <h3 className="avatar__name">Enterprise Security</h3>
+                        <h3 className="avatar__name">{t('enterprise')} {t('security')}</h3>
                       </div>
                     </div>
                   </div>
-                  <p>Enterprise-level security with advanced threat protection and comprehensive data privacy measures for large-scale public access.</p>
+                  <p>{t('enterprise')}-{t('level')} {t('security')} {t('with')} {t('advanced')} {t('threat')} {t('protection')} {t('and')} {t('comprehensive')} {t('data')} {t('privacy')} {t('measures')} {t('for')} {t('large')} {t('scale')} {t('public')} {t('access')}.</p>
                 </div>
               </div>
             </div>

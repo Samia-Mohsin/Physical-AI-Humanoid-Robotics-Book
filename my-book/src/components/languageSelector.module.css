@@ -40,6 +40,11 @@
   background-color: rgba(var(--ifm-color-primary-rgb), 0.1);
 }
 
+.flagButtons {
+  display: flex;
+  gap: 0.25rem;
+}
+
 @media (max-width: 768px) {
   .languageSelector {
     flex-direction: row;
