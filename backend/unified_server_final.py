@@ -8,7 +8,14 @@ import os
 import uvicorn
 
 # Import the API routers from the existing app
-from app.routers import query, auth, personalize, translate, quizzes
+try:
+    from app.routers import query, auth, personalize, translate, quizzes
+except ImportError:
+    import sys
+    import os
+    # Add the current directory to path to resolve imports
+    sys.path.insert(0, os.path.dirname(__file__))
+    from app.routers import query, auth, personalize, translate, quizzes
 
 # Create the main FastAPI app
 app = FastAPI(
