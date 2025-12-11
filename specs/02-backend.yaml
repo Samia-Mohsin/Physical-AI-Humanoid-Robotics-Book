@@ -1,0 +1,130 @@
+# Backend Specification
+# Defines the FastAPI-based backend architecture
+
+name: "Backend"
+version: "1.0.0"
+description: "FastAPI backend with OpenAI integration, Neon Postgres, and Qdrant vector store"
+
+requirements:
+  functional:
+    - "Provide RAG query API endpoint for chatbot functionality"
+    - "Integrate with OpenAI for response generation"
+    - "Use Qdrant Cloud for vector storage and similarity search"
+    - "Store conversation history in Neon Serverless Postgres"
+    - "Support document ingestion from MDX files"
+    - "Provide translation API endpoints"
+    - "Implement personalization API endpoints"
+
+  non_functional:
+    - "Response time under 2 seconds"
+    - "Handle concurrent users (100+)"
+    - "99.9% uptime for vector store"
+    - "Secure API key management"
+    - "Rate limiting for API endpoints"
+
+architecture:
+  framework: "FastAPI"
+  database: "Neon Serverless Postgres"
+  vector_store: "Qdrant Cloud"
+  deployment: "Serverless Functions"
+
+technology_stack:
+  framework: "FastAPI"
+  language: "Python 3.9+"
+  database: "Neon Postgres"
+  vector_store: "Qdrant Cloud"
+  ai: "OpenAI API"
+  deployment: "Serverless platform"
+
+components:
+  - name: "fastapi_app"
+    description: "Main FastAPI application with CORS and routing"
+    files:
+      - "backend/app/main.py"
+    features:
+      - "Health check endpoints"
+      - "CORS middleware configuration"
+      - "API router integration"
+
+  - name: "query_router"
+    description: "API endpoints for RAG queries"
+    files:
+      - "backend/app/routers/query.py"
+    features:
+      - "/api/query endpoint for chat requests"
+      - "Text selection context handling"
+      - "Response validation and error handling"
+
+  - name: "rag_service"
+    description: "RAG service with vector search and response generation"
+    files:
+      - "backend/app/services/rag.py"
+    features:
+      - "Document retrieval from vector store"
+      - "Context-aware response generation"
+      - "Source citation extraction"
+
+  - name: "qdrant_service"
+    description: "Qdrant vector store integration"
+    files:
+      - "backend/app/services/qdrant.py"
+    features:
+      - "Document embedding and storage"
+      - "Vector similarity search"
+      - "Collection management"
+
+  - name: "neon_service"
+    description: "Neon Postgres integration for conversation history"
+    files:
+      - "backend/app/services/neon.py"
+    features:
+      - "Conversation history storage"
+      - "User session management"
+      - "Data persistence"
+
+  - name: "document_ingestion"
+    description: "One-time script to load book content to Qdrant"
+    files:
+      - "backend/ingest/load_book_to_qdrant.py"
+    features:
+      - "MDX file parsing"
+      - "Text chunking and embedding"
+      - "Vector store population"
+
+integration_points:
+  - "OpenAI API for embeddings and completions"
+  - "Qdrant Cloud for vector storage"
+  - "Neon Serverless Postgres for conversation history"
+  - "Frontend for API communication"
+
+security:
+  - "Environment variable API key storage"
+  - "Input validation and sanitization"
+  - "Rate limiting for API endpoints"
+  - "Secure vector store access"
+
+performance:
+  - "Vector search under 500ms"
+  - "Response generation under 1500ms"
+  - "Handle 100+ concurrent users"
+  - "99.9% vector store availability"
+
+testing:
+  - "Unit tests for RAG service"
+  - "Integration tests for API endpoints"
+  - "Performance tests for vector search"
+  - "End-to-end tests for chat functionality"
+
+deployment:
+  - "FastAPI on serverless platform"
+  - "Qdrant Cloud Free Tier"
+  - "Neon Serverless Postgres"
+  - "Environment-specific configurations"
+
+dependencies:
+  - "fastapi>=0.104.0"
+  - "uvicorn>=0.24.0"
+  - "openai>=1.0.0"
+  - "qdrant-client>=1.7.0"
+  - "psycopg2-binary>=2.9.0"
+  - "python-multipart>=0.0.6"

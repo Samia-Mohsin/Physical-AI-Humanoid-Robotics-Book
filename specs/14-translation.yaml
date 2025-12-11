@@ -1,0 +1,105 @@
+# Feature Specification: Translation Component
+
+**Feature Branch**: `14-translation`
+**Created**: 2025-12-10
+**Status**: Draft
+**Input**: User description: "component: translation
+constitution: true
+features:
+  - openai_translate: gpt4o  # Context-aware for robotics terms
+  - modes: [urdu_script, roman_urdu]  # Toggle button
+  - cache: localstorage + neon_user_prefs
+  - endpoint: /translate GET {chapter, mode}
+  - button: chapter_start_toggle  # English ↔ Urdu ↔ Roman"
+
+## User Scenarios & Testing *(mandatory)*
+
+### User Story 1 - Multilingual Content Access (Priority: P1)
+
+As a user who speaks Urdu or is familiar with Roman Urdu, I want to toggle between English, Urdu script, and Roman Urdu translations of the book content, so that I can learn Physical AI & Humanoid Robotics concepts in my preferred language.
+
+**Why this priority**: Language accessibility is fundamental to making the educational content available to a wider audience.
+
+**Independent Test**: Users can switch between English, Urdu script, and Roman Urdu modes and see the content properly translated.
+
+**Acceptance Scenarios**:
+
+1. **Given** I am viewing content in English, **When** I click the translation toggle button, **Then** I can switch to Urdu script mode
+2. **Given** I am viewing content in English, **When** I click the translation toggle button, **Then** I can switch to Roman Urdu mode
+3. **Given** I have selected a translation mode, **When** I navigate to different chapters, **Then** the translation mode persists across pages
+
+---
+
+### User Story 2 - Context-Aware Translation (Priority: P1)
+
+As a learner, I want the system to use context-aware translation powered by OpenAI GPT-4o for robotics and AI terminology, so that I receive accurate translations of technical concepts rather than literal translations that might lose meaning.
+
+**Why this priority**: Technical accuracy is critical for educational content, especially in specialized fields like robotics and AI.
+
+**Independent Test**: When content is translated, technical terms are accurately converted while maintaining the educational meaning.
+
+**Acceptance Scenarios**:
+
+1. **Given** I request Urdu translation of technical content, **When** the system translates, **Then** robotics and AI terminology is accurately translated with context awareness
+2. **Given** I request Roman Urdu translation of technical content, **When** the system translates, **Then** complex concepts are properly transliterated while maintaining meaning
+3. **Given** I switch between translation modes frequently, **When** I do so, **Then** the system maintains translation quality and context
+
+---
+
+### User Story 3 - Persistent Translation Preferences (Priority: P2)
+
+As a returning user, I want my translation preferences to be cached locally and stored in Neon Postgres, so that my preferred language settings are maintained across sessions and devices.
+
+**Why this priority**: User experience is improved when preferences are remembered, eliminating the need to reconfigure settings each visit.
+
+**Independent Test**: Users can close the browser and return to find their preferred translation settings still active.
+
+**Acceptance Scenarios**:
+
+1. **Given** I have set my translation preferences, **When** I close and reopen the browser, **Then** my preferred translation mode is restored
+2. **Given** I access the content from different devices, **When** I log in, **Then** my translation preferences are synchronized from Neon Postgres
+3. **Given** I update my translation preferences, **When** I make changes, **Then** both local cache and server preferences are updated
+
+---
+
+### Edge Cases
+
+- What happens when OpenAI translation service is temporarily unavailable?
+- How does the system handle translation of code examples and technical diagrams?
+- What occurs when users switch languages during a lesson?
+- How does the system handle very long chapters with complex technical content?
+- What happens when the translation cache becomes too large?
+
+## Requirements *(mandatory)*
+
+### Functional Requirements
+
+- **FR-001**: System MUST implement OpenAI GPT-4o powered translation for context-aware robotics and AI terminology
+- **FR-002**: System MUST provide toggle functionality between English, Urdu script, and Roman Urdu modes
+- **FR-003**: System MUST cache translation preferences in browser localStorage
+- **FR-004**: System MUST store user translation preferences in Neon Postgres database
+- **FR-005**: System MUST provide a /translate GET endpoint accepting chapter and mode parameters
+- **FR-006**: System MUST include a toggle button at the start of each chapter for language switching
+- **FR-007**: System MUST accurately translate technical terminology with context awareness
+- **FR-008**: System MUST maintain translation quality across different content types (text, code, equations)
+- **FR-009**: System MUST synchronize translation preferences across user sessions and devices
+- **FR-010**: System MUST provide graceful degradation when translation service is unavailable
+
+### Key Entities
+
+- **Translation Modes**: English, Urdu script, and Roman Urdu language options for content display
+- **User Preferences**: Individual user settings for translation mode stored in Neon Postgres
+- **Translation Cache**: Local storage of translation preferences and potentially translated content
+- **Translation Endpoint**: API endpoint for retrieving translated content based on chapter and mode
+
+## Success Criteria *(mandatory)*
+
+### Measurable Outcomes
+
+- **SC-001**: Translation toggle button is accessible and functional on 100% of chapters
+- **SC-002**: Context-aware translations maintain technical accuracy in 95% of robotics/AI terminology
+- **SC-003**: Translation preferences persist across sessions with 99% reliability
+- **SC-004**: Translation service responds within 2 seconds for 90% of requests
+- **SC-005**: All three language modes (English, Urdu script, Roman Urdu) display content properly formatted
+- **SC-006**: Translation quality scores average 4.0/5.0 or higher from user feedback
+- **SC-007**: Translation preferences synchronize between devices for logged-in users in 95% of cases

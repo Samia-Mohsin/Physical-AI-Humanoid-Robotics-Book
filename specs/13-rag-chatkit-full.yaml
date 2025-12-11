@@ -1,0 +1,110 @@
+# Feature Specification: Full RAG ChatKit Integration
+
+**Feature Branch**: `13-rag-chatkit-full`
+**Created**: 2025-12-10
+**Status**: Draft
+**Input**: User description: "component: rag_chatbot
+source: ../mcp-chatkit-context7.yaml
+features:
+  - openai_agents_chatkit_full
+  - selected_text_explain_ask_buttons
+  - qdrant_neon_integration
+  - agent_skills_all
+  - embed_bottom_right
+  - realtime_streaming
+output: frontend/src/components/Chatbot.tsx + backend/app/services/rag.py"
+
+## User Scenarios & Testing *(mandatory)*
+
+### User Story 1 - Real-Time Chat Experience (Priority: P1)
+
+As a student reading the Physical AI & Humanoid Robotics book, I want to interact with a real-time streaming chatbot that responds instantly to my questions, so that I can get immediate assistance while studying without disrupting my learning flow.
+
+**Why this priority**: Real-time interaction is crucial for maintaining engagement and providing immediate assistance during learning.
+
+**Independent Test**: Users can ask questions and receive streaming responses that appear character-by-character in real-time, creating a natural conversational flow.
+
+**Acceptance Scenarios**:
+
+1. **Given** I am viewing book content, **When** I ask a question via the chatbot, **Then** I receive a streaming response that appears in real-time
+2. **Given** I have selected text in the content, **When** I click the "Explain" button, **Then** the chatbot explains the selected text with streaming response
+3. **Given** I want to ask a general question, **When** I click the "Ask" button, **Then** I can ask my question and receive a streaming response
+
+---
+
+### User Story 2 - Full OpenAI Agents Integration (Priority: P1)
+
+As a user, I want the chatbot to leverage the full power of OpenAI Agents and ChatKit SDK, so that I can benefit from advanced AI capabilities including sophisticated reasoning, multi-step problem solving, and rich interactive experiences.
+
+**Why this priority**: Full OpenAI Agents integration provides the most advanced and capable AI assistance for complex educational content.
+
+**Independent Test**: The chatbot utilizes OpenAI's agent capabilities to handle complex queries, perform multi-step reasoning, and provide detailed explanations.
+
+**Acceptance Scenarios**:
+
+1. **Given** I ask a complex multi-part question, **When** I submit it to the chatbot, **Then** the agent processes it using multi-step reasoning and provides a comprehensive response
+2. **Given** I need help with a specific technical concept, **When** I ask for explanation, **Then** the agent uses its full capabilities to provide detailed, accurate explanations
+3. **Given** I need code examples, **When** I request them, **Then** the agent generates relevant, working code examples with explanations
+
+---
+
+### User Story 3 - Integrated Database Services (Priority: P2)
+
+As a user, I want the system to seamlessly integrate Qdrant for vector search and Neon Postgres for user data, so that I get accurate, contextually relevant responses while maintaining my personalization settings and conversation history.
+
+**Why this priority**: Proper database integration is essential for effective RAG (Retrieval Augmented Generation) functionality and personalization.
+
+**Independent Test**: The system retrieves relevant information from Qdrant and accesses user context from Neon Postgres to enhance responses.
+
+**Acceptance Scenarios**:
+
+1. **Given** I ask a question about book content, **When** the system processes it, **Then** it retrieves relevant information from Qdrant vector store
+2. **Given** I am a returning user with preferences, **When** I interact with the chatbot, **Then** it accesses my context from Neon Postgres to personalize responses
+3. **Given** I have ongoing conversations, **When** I continue chatting, **Then** the system maintains context using Neon Postgres
+
+---
+
+### Edge Cases
+
+- What happens when the OpenAI service is temporarily unavailable?
+- How does the system handle network interruptions during real-time streaming?
+- What occurs when Qdrant vector search returns no relevant results?
+- How does the system behave when Neon Postgres is unavailable?
+- What happens when users select very large amounts of text for explanation?
+
+## Requirements *(mandatory)*
+
+### Functional Requirements
+
+- **FR-001**: System MUST implement full OpenAI Agents and ChatKit SDK integration for maximum AI capabilities
+- **FR-002**: System MUST provide "Explain" and "Ask" buttons that respond to selected text and general questions respectively
+- **FR-003**: System MUST integrate with Qdrant for vector search and document retrieval
+- **FR-004**: System MUST integrate with Neon Postgres for user data and conversation history
+- **FR-005**: System MUST embed the chatbot widget in bottom-right corner of screen
+- **FR-006**: System MUST provide real-time streaming responses that appear character-by-character
+- **FR-007**: System MUST implement all available agent skills for comprehensive functionality
+- **FR-008**: System MUST handle selected text context when explaining user-highlighted content
+- **FR-009**: System MUST maintain conversation history and context across sessions
+- **FR-010**: System MUST provide source citations for information retrieved from book content
+- **FR-011**: System MUST handle multi-modal inputs including text selection and direct questions
+- **FR-012**: System MUST provide graceful error handling when external services are unavailable
+
+### Key Entities
+
+- **Chat Interface**: Real-time streaming chatbot embedded in bottom-right corner with Explain/Ask buttons
+- **AI Agent**: Full OpenAI Agents implementation with access to all agent skills
+- **Vector Store**: Qdrant integration for semantic search and document retrieval
+- **User Context**: Neon Postgres storage for personalization settings and conversation history
+- **Streaming Service**: Real-time response streaming functionality for natural conversation flow
+
+## Success Criteria *(mandatory)*
+
+### Measurable Outcomes
+
+- **SC-001**: Real-time streaming responses appear within 100ms of receiving initial response from OpenAI
+- **SC-002**: 95% of selected text explanations are accurate and contextually relevant
+- **SC-003**: Qdrant vector search returns relevant results for 90% of content-related queries
+- **SC-004**: All agent skills are functional and accessible through the chat interface
+- **SC-005**: The embedded chatbot loads and displays properly in bottom-right corner on all major browsers
+- **SC-006**: Conversation history persists across sessions with 99% reliability
+- **SC-007**: At least 80% of user interactions result in successful, helpful responses

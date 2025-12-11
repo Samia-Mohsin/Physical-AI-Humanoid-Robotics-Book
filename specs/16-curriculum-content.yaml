@@ -1,0 +1,140 @@
+# Feature Specification: Advanced Physical AI & Humanoid Robotics Curriculum
+
+**Feature Branch**: `16-curriculum-content`
+**Created**: 2025-12-10
+**Status**: Draft
+**Input**: User description: "component: book_content
+constitution: true
+source: advanced_12_module_curriculum_2025
+generate_with_claude_subagent: ContentGeneratorPro
+features:
+  - mdx_v2
+  - live_code_blocks: [python, bash, xml]  # URDF examples
+  - interactive_quizzes_per_section
+  - embedded_simulation_widgets  # Future: WebAssembly Gazebo
+  - translation_ready: [urdu, roman_urdu]
+output: frontend/docs/"
+
+## User Scenarios & Testing *(mandatory)*
+
+### User Story 1 - Comprehensive Learning Journey (Priority: P1)
+
+As a student pursuing advanced robotics education, I want to follow a structured curriculum with 7 detailed chapters covering from ROS 2 fundamentals to Vision-Language-Action models, so that I can systematically build expertise in Physical AI & Humanoid Robotics from foundational concepts to cutting-edge applications.
+
+**Why this priority**: This provides the core educational pathway that guides students through the complete learning experience.
+
+**Independent Test**: Students can progress through all 7 chapters in sequence and gain comprehensive knowledge from basic ROS 2 concepts to advanced VLA models.
+
+**Acceptance Scenarios**:
+
+1. **Given** I am a beginner in robotics, **When** I start with Chapter 1, **Then** I can progress through all 7 chapters and develop advanced humanoid robotics expertise
+2. **Given** I am an experienced roboticist, **When** I browse the curriculum, **Then** I can access specific chapters relevant to my current needs
+3. **Given** I want to practice concepts hands-on, **When** I encounter hands-on exercises, **Then** I can complete meaningful projects like deploying controllers or training humanoid models
+
+---
+
+### User Story 2 - Interactive Learning Experience (Priority: P1)
+
+As a learner, I want to interact with live code examples, quizzes, and embedded simulation widgets throughout the content, so that I can practice concepts as I learn them and receive immediate feedback.
+
+**Why this priority**: Interactive elements significantly improve learning outcomes by allowing hands-on practice with concepts.
+
+**Independent Test**: Students can execute live code examples, take quizzes, and interact with simulation widgets to reinforce learning.
+
+**Acceptance Scenarios**:
+
+1. **Given** I encounter a Python/ROS 2 code example, **When** I modify and run the code, **Then** I see immediate results demonstrating the concept
+2. **Given** I complete a section, **When** I take the embedded quiz, **Then** I receive immediate feedback on my understanding
+3. **Given** I want to visualize complex concepts, **When** I interact with simulation widgets, **Then** I can manipulate parameters and observe effects in real-time
+
+---
+
+### User Story 3 - Multilingual Accessibility (Priority: P2)
+
+As a student who prefers learning in Urdu or Roman Urdu, I want to access the same high-quality technical content in my preferred language, so that language barriers don't impede my understanding of advanced robotics concepts.
+
+**Why this priority**: Multilingual support expands access to advanced robotics education to a broader audience.
+
+**Independent Test**: Students can switch between English, Urdu, and Roman Urdu modes and access the same technical content with accurate translations.
+
+**Acceptance Scenarios**:
+
+1. **Given** I prefer Urdu, **When** I toggle the language setting, **Then** I can access all 7 chapters in properly translated Urdu
+2. **Given** I prefer Roman Urdu, **When** I toggle the language setting, **Then** I can access all 7 chapters in Roman Urdu format
+3. **Given** I need technical terminology translated, **When** I view robotics concepts, **Then** complex terms are accurately translated while maintaining technical precision
+
+---
+
+### Edge Cases
+
+- What happens when live code examples fail to execute in certain environments?
+- How does the system handle complex simulation widgets that may not load?
+- What occurs when translation services produce technically inaccurate content?
+- How does the system handle very long chapters with complex technical content?
+- What happens when users try to access content offline?
+
+## Requirements *(mandatory)*
+
+### Functional Requirements
+
+- **FR-001**: System MUST provide 7 chapters with the following titles and content:
+  - Chapter 1: "The Robotic Nervous System — ROS 2 Masterclass" (3 weeks) - covering ROS 2 Architecture, Multi-machine deployment, Python/C++ Nodes, Advanced Topics, OpenAI/ROS bridging, URDF/SDF conversion, and 7-DOF humanoid arm controller
+  - Chapter 2: "Digital Twin Engineering — Gazebo Fortress & Unity Robotics" (3 weeks) - covering Gazebo/ROS integration, Physics tuning, Sensor simulation, Unity rendering, Domain Randomization, Sim-to-Real analysis, and Tesla Optimus digital twin
+  - Chapter 3: "NVIDIA Isaac™ Platform — The GPU-Accelerated Brain" (4 weeks) - covering Isaac Sim, PhysX/TensorRT, Isaac ROS GEMs, Synthetic data generation, VLA training, Nav2 navigation, and humanoid walking with PPO
+  - Chapter 4: "Vision-Language-Action Models (VLA) — The Future of Robot Intelligence" (4 weeks) - covering VLA architectures, Whisper-GPT-ROS pipeline, prompt engineering, fine-tuning, memory-augmented systems, safety layers, and voice-controlled humanoids
+  - Chapter 5: "Perception Stack for Humanoids" (2 weeks) - covering foundation models, 3D scene graphs, human pose tracking, object tracking, and multimodal fusion
+  - Chapter 6: "Bipedal Locomotion & Whole-Body Control" (3 weeks) - covering model-based and learning-based control, hybrid approaches, ZMP/Capture Point, and whole-body control
+  - Chapter 7: "Dexterous Manipulation & In-Hand Reorientation" (2 weeks) - covering advanced manipulation beyond parallel grippers
+- **FR-002**: System MUST generate content using Claude ContentGeneratorPro subagent with automated fact-checking against authoritative source documentation
+- **FR-003**: System MUST support MDX v2 format for advanced content features
+- **FR-004**: System MUST include live code blocks supporting Python, Bash, and XML (URDF examples) with execution capability
+- **FR-005**: System MUST provide interactive quizzes with detailed explanations and progress tracking for each section
+- **FR-006**: System MUST support embedded simulation widget placeholders only (with WebAssembly Gazebo planned for future implementation)
+- **FR-007**: System MUST support high-quality translation for Urdu and Roman Urdu languages with proper quality assurance
+- **FR-008**: System MUST output all content to frontend/docs directory in MDX format
+- **FR-009**: System MUST maintain technical accuracy for complex robotics and AI concepts
+- **FR-010**: System MUST preserve the specified duration for each chapter (3, 3, 4, 4, 2, 3, 2 weeks respectively)
+- **FR-011**: System MUST include hands-on projects as specified in each chapter
+- **FR-012**: System MUST ensure content quality matches the advanced curriculum standards
+
+### Key Entities
+
+- **Curriculum Structure**: 7-chapter curriculum covering Physical AI & Humanoid Robotics from fundamentals to advanced applications
+- **Interactive Elements**: Live code examples with execution capability, interactive quizzes with detailed explanations and progress tracking, and simulation widget placeholders
+- **Multilingual Support**: High-quality translation for English, Urdu, and Roman Urdu versions with proper quality assurance
+- **Technical Content**: Advanced robotics concepts including ROS 2, Gazebo, Isaac Sim, VLA models, perception, locomotion, and manipulation
+
+## Clarifications
+
+### Session 2025-12-10
+
+- Q: Content Generation Approach → A: Claude generation with automated fact-checking against source documentation
+- Q: Simulation Widget Implementation → A: Placeholder widgets only, no actual simulation functionality
+- Q: Live Code Execution Environment → A: Live code blocks with execution capability (as required by constitution) to enable interactive learning
+- Q: Translation Quality Requirements → A: High-quality translation with proper quality assurance (as required by constitution) including human review for technical accuracy
+- Q: Quiz Interactivity Level → A: Interactive quizzes with detailed explanations and progress tracking (as required by constitution)
+
+### Alignment with Project Constitution
+
+The following requirements have been updated to align with the project constitution which mandates:
+- Interactive features including live_code_blocks (not static)
+- Interactive quizzes with detailed explanations and progress tracking
+- High-quality translation with proper quality assurance (not machine-only)
+
+- Updated FR-004: Live code blocks with execution capability
+- Updated FR-005: Interactive quizzes with detailed explanations and progress tracking
+- Updated FR-007: High-quality translation with proper quality assurance
+- Updated Key Entities: Reflecting live code and interactive quizzes
+- Updated Success Criteria: SC-002 and SC-003 updated to reflect live code and detailed quizzes
+
+## Success Criteria *(mandatory)*
+
+### Measurable Outcomes
+
+- **SC-001**: All 7 chapters are created with comprehensive content covering the specified topics
+- **SC-002**: 100% of chapters include live code examples with execution capability in Python, Bash, and XML
+- **SC-003**: Interactive quizzes with detailed explanations and progress tracking are present in every section
+- **SC-004**: Content accuracy is verified at 98% or higher for technical concepts
+- **SC-005**: All chapters are properly formatted as MDX files and integrate with Docusaurus
+- **SC-006**: Translation placeholders are available for all 3 languages (English, Urdu, Roman Urdu)
+- **SC-007**: Students can successfully complete the hands-on projects specified in each chapter

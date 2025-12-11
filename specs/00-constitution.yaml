@@ -1,0 +1,15 @@
+# Project Constitution
+# Links to the master constitution file
+
+name: "Physical AI & Humanoid Robotics Book Constitution"
+version: "1.0.0"
+description: "Master constitution linking to the main project constitution"
+
+links:
+  - "../sp-constitution.yaml"
+
+specification:
+  purpose: "Defines the overall project architecture, components, and development workflow"
+  scope: "Entire project including frontend, backend, and integration points"
+  dependencies:
+    - "sp-constitution.yaml"

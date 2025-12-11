@@ -1,0 +1,130 @@
+# RAG Chatbot Specification
+# Defines the Retrieval-Augmented Generation chatbot functionality
+
+name: "RAG Chatbot"
+version: "1.0.0"
+description: "Retrieval-Augmented Generation chatbot that answers questions about the book content"
+
+requirements:
+  functional:
+    - "Answer user questions based on book content"
+    - "Support text selection and context-aware responses"
+    - "Integrate with OpenAI Agents/ChatKit SDKs"
+    - "Use vector search with Qdrant Cloud Free Tier"
+    - "Store conversation history in Neon Serverless Postgres"
+    - "Provide source citations for answers"
+
+  non_functional:
+    - "Response time under 2 seconds"
+    - "Handle concurrent users (100+)"
+    - "99.9% uptime for vector store"
+    - "Secure API key management"
+
+architecture:
+  frontend:
+    - "Embedded chat widget in Docusaurus"
+    - "Text selection popup for 'Explain Selection' feature"
+    - "Chat history persistence"
+    - "Real-time responses"
+
+  backend:
+    - "FastAPI endpoints for RAG queries"
+    - "Qdrant vector store for document chunks"
+    - "Neon Postgres for conversation history"
+    - "OpenAI integration for response generation"
+    - "Document ingestion pipeline"
+
+technology_stack:
+  frontend:
+    - "React components for chat UI"
+    - "Docusaurus integration"
+    - "WebSocket for real-time communication"
+
+  backend:
+    - "FastAPI for web framework"
+    - "OpenAI API for LLM"
+    - "Qdrant for vector storage"
+    - "Neon Postgres for metadata"
+    - "Python for document processing"
+
+components:
+  - name: "frontend_chat_widget"
+    description: "Embedded chat widget in Docusaurus"
+    files:
+      - "frontend/src/components/Chatbot.tsx"
+      - "frontend/src/components/TextSelectionPopup.tsx"
+    features:
+      - "Bottom-right floating widget"
+      - "Ask and Explain Selection buttons"
+      - "Chat history display"
+      - "Source citations"
+
+  - name: "backend_rag_service"
+    description: "RAG service with vector search"
+    files:
+      - "backend/app/services/rag.py"
+      - "backend/app/services/qdrant.py"
+      - "backend/app/services/neon.py"
+    features:
+      - "Document chunking and embedding"
+      - "Vector similarity search"
+      - "Context retrieval"
+      - "Response generation"
+
+  - name: "api_endpoints"
+    description: "FastAPI endpoints for chat functionality"
+    files:
+      - "backend/app/routers/query.py"
+      - "backend/app/main.py"
+    features:
+      - "/query endpoint for chat requests"
+      - "Text selection context handling"
+      - "Conversation history management"
+
+  - name: "document_ingestion"
+    description: "One-time script to load book content to Qdrant"
+    files:
+      - "backend/ingest/load_book_to_qdrant.py"
+    features:
+      - "Parse book content (MDX files)"
+      - "Chunk documents appropriately"
+      - "Generate embeddings"
+      - "Load to Qdrant collection"
+
+integration_points:
+  - "OpenAI API for embeddings and completions"
+  - "Qdrant Cloud for vector storage"
+  - "Neon Serverless Postgres for conversation history"
+  - "Docusaurus for frontend embedding"
+  - "Text selection API for context-aware responses"
+
+security:
+  - "Environment variable API key storage"
+  - "Input validation and sanitization"
+  - "Rate limiting for API endpoints"
+  - "Secure vector store access"
+
+performance:
+  - "Vector search under 500ms"
+  - "Response generation under 1500ms"
+  - "Handle 100+ concurrent users"
+  - "99.9% vector store availability"
+
+testing:
+  - "Unit tests for RAG service"
+  - "Integration tests for API endpoints"
+  - "Performance tests for vector search"
+  - "End-to-end tests for chat functionality"
+
+deployment:
+  - "FastAPI on serverless platform"
+  - "Qdrant Cloud Free Tier"
+  - "Neon Serverless Postgres"
+  - "Environment-specific configurations"
+
+dependencies:
+  - "openai>=1.0.0"
+  - "qdrant-client>=1.7.0"
+  - "psycopg2-binary>=2.9.0"
+  - "fastapi>=0.104.0"
+  - "uvicorn>=0.24.0"

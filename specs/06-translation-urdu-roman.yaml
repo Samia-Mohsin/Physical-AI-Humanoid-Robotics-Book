@@ -1,0 +1,105 @@
+# Translation - Urdu and Roman Urdu Specification
+# Defines multilingual support for Urdu and Roman Urdu
+
+name: "Translation - Urdu and Roman Urdu"
+version: "1.0.0"
+description: "Multilingual support for Urdu and Roman Urdu content and UI"
+
+requirements:
+  functional:
+    - "Full content translation to Urdu and Roman Urdu"
+    - "UI element translation and localization"
+    - "Language switching functionality"
+    - "Right-to-left (RTL) layout support for Urdu"
+    - "Bidirectional text handling"
+    - "Cultural adaptation of examples and references"
+
+  non_functional:
+    - "Translation accuracy and cultural appropriateness"
+    - "Consistent terminology across languages"
+    - "Performance with multilingual content"
+    - "Accessibility for multilingual users"
+    - "Maintainable translation workflow"
+
+architecture:
+  translation_system: "Custom localization system with fallbacks"
+  content_storage: "Separate files per language or unified with metadata"
+  ui_localization: "Component-based translation system"
+  deployment: "Static generation per language or dynamic switching"
+
+technology_stack:
+  i18n: "Custom solution or react-i18next"
+  rtl_support: "rtlcss or similar for RTL layouts"
+  translation_formats: "YAML, JSON, or other localization formats"
+  font_support: "Web fonts supporting Arabic/Urdu scripts"
+
+components:
+  - name: "content_translation"
+    description: "Translation of book content to Urdu and Roman Urdu"
+    features:
+      - "Chapter-by-chapter translation"
+      - "Code example localization"
+      - "Diagram and visual aid adaptation"
+      - "Cultural context preservation"
+
+  - name: "ui_translation"
+    description: "Translation of UI elements and navigation"
+    files:
+      - "frontend/src/components/TranslateToggle.tsx"
+      - "frontend/src/contexts/LanguageContext.tsx"
+    features:
+      - "Navigation and menu translation"
+      - "Button and form label translation"
+      - "Error message translation"
+      - "Dynamic language switching"
+
+  - name: "rtl_layout"
+    description: "Right-to-left layout support for Urdu"
+    features:
+      - "RTL CSS generation"
+      - "Bidirectional text handling"
+      - "RTL-specific component styling"
+      - "Navigation flow adjustment"
+
+  - name: "translation_management"
+    description: "Tools and processes for translation maintenance"
+    features:
+      - "Translation file management"
+      - "Consistency checking"
+      - "Quality assurance workflows"
+      - "Collaborative translation tools"
+
+integration_points:
+  - "Language context API for frontend"
+  - "Backend translation endpoints"
+  - "Content management system"
+  - "User preference system for language selection"
+
+security:
+  - "Secure handling of translation assets"
+  - "Input validation for user-contributed translations"
+  - "Protection against XSS in translated content"
+
+performance:
+  - "Efficient language switching"
+  - "Optimized bundle sizes for multilingual sites"
+  - "Caching strategies for translation assets"
+  - "Fast loading of localized content"
+
+testing:
+  - "Translation accuracy verification"
+  - "RTL layout testing"
+  - "Cross-language consistency checks"
+  - "Performance testing for multilingual features"
+
+deployment:
+  - "Language-specific builds or dynamic loading"
+  - "CDN distribution for translation assets"
+  - "SEO optimization for multilingual content"
+  - "Geographic content delivery optimization"
+
+dependencies:
+  - "react-i18next"  # or similar i18n library
+  - "rtlcss"  # for RTL CSS generation
+  - "i18next-browser-languagedetector"  # for language detection
+  - "fontsource"  # for web fonts with Urdu support

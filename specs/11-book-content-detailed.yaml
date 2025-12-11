@@ -1,0 +1,124 @@
+# Feature Specification: Detailed Book Content - Physical AI & Humanoid Robotics
+
+**Feature Branch**: `11-book-content-detailed`
+**Created**: 2025-12-10
+**Status**: Draft
+**Input**: User description: "component: book_content
+constitution: true
+title: "Physical AI & Humanoid Robotics"
+chapters:  # Auto-gen with Claude subagent
+  - 01-introduction.mdx: history_future_work
+  - 02-robotics-fundamentals.mdx: kinematics_sensors
+  - 03-ai-integration.mdx: ml_perception_rl
+  - 04-humanoid-design.mdx: bipedal_hardware
+  - 05-perception-slam.mdx: opencv_yolo
+  - 06-motion-control.mdx: pid_a_star
+  - 07-human-robot-interaction.mdx: nlp_safety
+  - 08-ethics-safety.mdx: bias_asimov
+  - 09-case-studies.mdx: optimus_atlas
+  - 10-build-project.mdx: gazebo_rpi_tutorial
+  - 11-advanced.mdx: swarm_bio_edge_ai
+  - 12-trends-exercises.mdx: predictions_quizzes
+features:
+  - claude_gen: ContentGenerator subagent
+  - interactive: live_code + mdx_quizzes + translation_placeholders
+output_dir: frontend/docs
+make sure chapters must be same which i created in previous physical ai and humanoid robotics"
+
+## User Scenarios & Testing *(mandatory)*
+
+### User Story 1 - Comprehensive Learning Experience (Priority: P1)
+
+As a student learning about Physical AI & Humanoid Robotics, I want to access a structured book with 12 comprehensive chapters covering all essential topics, so that I can build a complete understanding from fundamentals to advanced concepts.
+
+**Why this priority**: This is the core educational experience that provides structured learning from basic concepts to advanced applications.
+
+**Independent Test**: Students can navigate through the 12 chapters in sequence and gain comprehensive knowledge of Physical AI & Humanoid Robotics.
+
+**Acceptance Scenarios**:
+
+1. **Given** I am a beginner in robotics, **When** I start with Chapter 1, **Then** I can progress through all 12 chapters and develop advanced understanding
+2. **Given** I am an advanced learner, **When** I browse the content, **Then** I can jump to specific chapters relevant to my interests
+3. **Given** I want to practice what I learn, **When** I encounter interactive elements, **Then** I can engage with live code and quizzes
+
+---
+
+### User Story 2 - Interactive Content Engagement (Priority: P1)
+
+As a learner, I want to interact with live code examples, quizzes, and other interactive elements throughout the book, so that I can practice concepts as I learn them.
+
+**Why this priority**: Interactive elements significantly improve learning outcomes by allowing hands-on practice with concepts.
+
+**Independent Test**: Students can execute live code examples, take quizzes, and interact with content to reinforce learning.
+
+**Acceptance Scenarios**:
+
+1. **Given** I encounter a live code example, **When** I modify and run the code, **Then** I see immediate results demonstrating the concept
+2. **Given** I complete a section, **When** I take the embedded quiz, **Then** I receive immediate feedback on my understanding
+3. **Given** I want to access content in different languages, **When** I use translation features, **Then** I can switch between English, Urdu, and Roman Urdu
+
+---
+
+### User Story 3 - AI-Assisted Content Generation (Priority: P2)
+
+As an educator or content creator, I want to use AI subagents to generate high-quality educational content efficiently, so that I can create comprehensive materials with consistent quality and pedagogical value.
+
+**Why this priority**: AI-assisted content generation enables rapid creation of high-quality educational materials while maintaining consistency.
+
+**Independent Test**: The ContentGenerator subagent can create educational content that meets pedagogical standards and technical accuracy requirements.
+
+**Acceptance Scenarios**:
+
+1. **Given** I provide content specifications, **When** I use the ContentGenerator subagent, **Then** it produces educational content that is technically accurate and pedagogically sound
+2. **Given** I need content in multiple formats, **When** I request generation, **Then** the system creates appropriate MDX files with interactive elements
+
+---
+
+### Edge Cases
+
+- What happens when live code examples fail to execute?
+- How does the system handle quiz submissions during network outages?
+- What happens when AI content generation produces technically inaccurate information?
+- How does the system handle translation of highly technical terms?
+- What happens when students access content with different screen sizes or devices?
+
+## Requirements *(mandatory)*
+
+### Functional Requirements
+
+- **FR-001**: System MUST provide 12 chapters covering: introduction, robotics fundamentals, AI integration, humanoid design, perception/SLAM, motion control, human-robot interaction, ethics/safety, case studies, build project, advanced topics, and trends/exercises
+- **FR-002**: System MUST generate content using Claude ContentGenerator subagent for all 12 chapters
+- **FR-003**: System MUST support interactive elements including live code execution, MDX quizzes, and translation placeholders
+- **FR-004**: System MUST create MDX files for each chapter with proper Docusaurus integration
+- **FR-005**: System MUST include content on history and future of Physical AI & Humanoid Robotics in Chapter 1
+- **FR-006**: System MUST include content on kinematics and sensors in Chapter 2
+- **FR-007**: System MUST include content on machine learning, perception, and reinforcement learning in Chapter 3
+- **FR-008**: System MUST include content on bipedal hardware and humanoid design in Chapter 4
+- **FR-009**: System MUST include content on OpenCV, YOLO, and perception in Chapter 5
+- **FR-010**: System MUST include content on PID control, A* algorithm, and motion control in Chapter 6
+- **FR-011**: System MUST include content on NLP, safety, and human-robot interaction in Chapter 7
+- **FR-012**: System MUST include content on bias, Asimov laws, and ethics in Chapter 8
+- **FR-013**: System MUST include case studies on Optimus and Atlas robots in Chapter 9
+- **FR-014**: System MUST include Gazebo and Raspberry Pi tutorials in Chapter 10
+- **FR-015**: System MUST include content on swarm robotics, bio-inspired systems, and edge AI in Chapter 11
+- **FR-016**: System MUST include predictions and quizzes in Chapter 12
+- **FR-017**: System MUST output all content to frontend/docs directory in MDX format
+
+### Key Entities
+
+- **Book Chapters**: 12 structured chapters covering the complete Physical AI & Humanoid Robotics curriculum
+- **Interactive Elements**: Live code examples, quizzes, and other interactive components embedded in MDX files
+- **AI Content Generation**: ContentGenerator subagent responsible for creating educational content
+- **Translation Placeholders**: Multilingual support infrastructure for English, Urdu, and Roman Urdu
+
+## Success Criteria *(mandatory)*
+
+### Measurable Outcomes
+
+- **SC-001**: All 12 chapters are created with comprehensive content covering the specified topics
+- **SC-002**: 100% of chapters include functional interactive elements (live code, quizzes)
+- **SC-003**: Content accuracy is verified at 95% or higher for technical concepts
+- **SC-004**: All chapters are properly formatted as MDX files and integrate with Docusaurus
+- **SC-005**: Translation placeholders are available for all 3 languages (English, Urdu, Roman Urdu)
+- **SC-006**: Live code examples execute successfully in 98% of attempts
+- **SC-007**: Students can successfully complete at least 80% of quizzes with proper feedback

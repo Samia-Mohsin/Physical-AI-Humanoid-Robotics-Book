@@ -1,0 +1,108 @@
+# Feature Specification: Detailed RAG Chatbot Implementation
+
+**Feature Branch**: `10-rag-chatbot-detailed`
+**Created**: 2025-12-10
+**Status**: Draft
+**Input**: User description: "component: rag_chatbot
+constitution: true
+features:
+  - openai_agents_sdk: gpt4o_mini  # Agent for decision-making
+  - chatkit_embed: react_component  # Frontend widget
+  - qdrant_collection: book_chunks  # Embed chunks (size: 800, overlap: 200)
+  - neon_integration: user_context  # Fetch bg for personalization
+  - selected_text: priority_context  # If provided, use only + related chunks
+  - agent_skills: [retrieve_book, explain_concept, generate_quiz]  # Reusable in RAG
+  - endpoint: /query POST {query, selected_text, user_id}
+ingest_script: true  # load_book.py
+output_dir: backend/app/services/rag.py"
+
+## User Scenarios & Testing *(mandatory)*
+
+### User Story 1 - Context-Aware Question Answering (Priority: P1)
+
+As a student reading the Physical AI & Humanoid Robotics book, I want to ask questions about the content and get accurate answers that consider both the full book context and any specific text I've selected, so that I can get detailed explanations relevant to what I'm currently studying.
+
+**Why this priority**: This is the core functionality of the RAG chatbot - providing accurate answers based on the book content with contextual awareness.
+
+**Independent Test**: When I ask a question about the book content, the system retrieves relevant information from the book chunks and generates an accurate response, with higher priority given to information related to any selected text.
+
+**Acceptance Scenarios**:
+
+1. **Given** I have selected specific text in the book content, **When** I ask a question about that text, **Then** the response prioritizes information related to the selected text
+2. **Given** I have not selected any text, **When** I ask a general question about the book, **Then** the response is generated based on relevant book chunks
+3. **Given** I am logged in as a user, **When** I ask questions, **Then** my user context is considered for personalization
+
+---
+
+### User Story 2 - Intelligent Content Retrieval (Priority: P1)
+
+As a user, I want the chatbot to intelligently retrieve relevant information from the book using vector search, so that I receive accurate answers based on the most relevant content sections.
+
+**Why this priority**: The effectiveness of the RAG system depends on accurate retrieval of relevant information from the book content.
+
+**Independent Test**: When I ask a question, the system performs vector search in Qdrant to find the most relevant book chunks and uses them to generate the response.
+
+**Acceptance Scenarios**:
+
+1. **Given** I ask a question about a specific topic, **When** the system processes my query, **Then** it retrieves the most relevant book chunks from Qdrant collection
+2. **Given** I have selected text that is relevant to my question, **When** I ask the question, **Then** the system prioritizes chunks related to the selected text
+3. **Given** I ask a question with complex terminology, **When** the system searches, **Then** it finds semantically related content even if exact keywords don't match
+
+---
+
+### User Story 3 - Personalized Learning Experience (Priority: P2)
+
+As a registered user, I want the system to use my learning background and preferences to tailor the responses, so that I get explanations appropriate for my experience level and learning style.
+
+**Why this priority**: Personalization enhances the learning experience by adapting content to individual needs.
+
+**Independent Test**: The system retrieves my user context from Neon Postgres and adjusts the complexity and style of responses accordingly.
+
+**Acceptance Scenarios**:
+
+1. **Given** I have specified my experience level as beginner, **When** I ask questions, **Then** responses are simplified and include more foundational explanations
+2. **Given** I have specified my experience level as advanced, **When** I ask questions, **Then** responses include more technical details and advanced concepts
+
+---
+
+### Edge Cases
+
+- What happens when no relevant chunks are found for a query?
+- How does the system handle queries when Qdrant is temporarily unavailable?
+- What happens when selected text is too long or too short?
+- How does the system handle multiple concurrent users making queries?
+- What happens when Neon Postgres is unavailable for user context retrieval?
+
+## Requirements *(mandatory)*
+
+### Functional Requirements
+
+- **FR-001**: System MUST use OpenAI GPT-4o Mini for generating responses to user queries
+- **FR-002**: System MUST embed a React component for the chat interface in the frontend
+- **FR-003**: System MUST store book content as chunks of 800 tokens with 200-token overlap in Qdrant collection named "book_chunks"
+- **FR-004**: System MUST retrieve user context from Neon Postgres to personalize responses
+- **FR-005**: System MUST prioritize selected text as primary context when provided by the user
+- **FR-006**: System MUST implement agent skills including retrieve_book, explain_concept, and generate_quiz
+- **FR-007**: System MUST provide a /query POST endpoint accepting query, selected_text, and user_id parameters
+- **FR-008**: System MUST include an ingestion script to load book content into Qdrant
+- **FR-009**: System MUST perform vector similarity search to find relevant book chunks for each query
+- **FR-010**: System MUST generate responses that cite the sources used from the book content
+
+### Key Entities
+
+- **Book Chunks**: Segments of book content (800 tokens with 200-token overlap) stored in Qdrant for vector search
+- **User Context**: Personalized information stored in Neon Postgres including experience level, learning preferences, and history
+- **Query Request**: User input containing query text, optional selected text, and user identifier
+- **Agent Skills**: Reusable functions for different types of interactions (retrieve, explain, quiz generation)
+
+## Success Criteria *(mandatory)*
+
+### Measurable Outcomes
+
+- **SC-001**: 95% of queries return relevant responses within 3 seconds under normal load
+- **SC-002**: Vector search in Qdrant returns relevant chunks within 500ms for 95% of queries
+- **SC-003**: At least 90% of responses include accurate citations to book content
+- **SC-004**: Selected text context is properly prioritized in 98% of queries where it's provided
+- **SC-005**: The ingestion script successfully processes 100% of book content without errors
+- **SC-006**: The system handles 100+ concurrent users without performance degradation
+- **SC-007**: Personalized responses match user experience level in 95% of cases

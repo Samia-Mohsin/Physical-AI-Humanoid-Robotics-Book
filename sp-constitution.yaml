@@ -1,0 +1,81 @@
+# Spec-Driven Development Constitution
+# This is the master constitution that defines the entire project
+
+project_name: "Physical AI & Humanoid Robotics Book"
+version: "1.0.0"
+description: "An interactive educational platform with multilingual support and integrated RAG chatbot"
+
+architecture:
+  frontend: "Docusaurus v3 with interactive MDX, live code blocks, and embedded chatbot"
+  backend: "FastAPI with OpenAI integration, Neon Postgres, and Qdrant vector store"
+  deployment: "GitHub Pages for frontend, serverless backend"
+
+components:
+  - name: "frontend"
+    type: "docusaurus_v3"
+    constitution: true
+    features:
+      - "github_pages_deploy"
+      - "interactive_mdx"
+      - "live_code_blocks"
+      - "quizzes"
+      - "text_selection_explain_popup"
+      - "embedded_chatkit_widget"
+      - "buttons_per_chapter"
+    dependencies:
+      - "react"
+      - "docusaurus"
+      - "@docusaurus/core"
+      - "@docusaurus/preset-classic"
+      - "react-chatkit"
+
+  - name: "backend"
+    type: "fastapi"
+    constitution: true
+    features:
+      - "openai_integration"
+      - "qdrant_vector_store"
+      - "neon_postgres"
+      - "rag_query_api"
+      - "document_ingestion"
+    dependencies:
+      - "fastapi"
+      - "uvicorn"
+      - "openai"
+      - "qdrant-client"
+      - "psycopg2-binary"
+      - "sqlalchemy"
+
+specifications:
+  - "00-constitution"
+  - "01-frontend"
+  - "02-backend"
+  - "03-rag-chatbot"
+  - "04-book-content"
+  - "05-auth-personalization"
+  - "06-translation-urdu-roman"
+  - "07-advanced-bonus"
+
+deployment:
+  frontend: "github_pages"
+  backend: "serverless_functions"
+  database: "neon_serverless"
+  vector_store: "qdrant_cloud_free_tier"
+
+integrations:
+  - "openai_agents_sdk"
+  - "chatkit_sdk"
+  - "neon_postgres"
+  - "qdrant_cloud"
+
+security:
+  - "environment_variable_secrets"
+  - "api_key_management"
+  - "rate_limiting"
+  - "input_validation"
+
+development_workflow:
+  - "spec_driven_development"
+  - "automated_code_generation"
+  - "continuous_integration"
+  - "version_control"

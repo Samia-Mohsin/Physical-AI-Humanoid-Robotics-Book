@@ -1,0 +1,107 @@
+# Frontend Specification
+# Defines the Docusaurus-based frontend architecture
+
+name: "Frontend"
+version: "1.0.0"
+description: "Docusaurus v3 frontend with interactive features and embedded chatbot"
+
+requirements:
+  functional:
+    - "Provide interactive MDX content with live code blocks"
+    - "Embed RAG chatbot widget in bottom-right position"
+    - "Support text selection and explain selection functionality"
+    - "Provide multilingual support (English, Urdu, Roman Urdu)"
+    - "Include personalization features for user preferences"
+    - "Implement quizzes and progress tracking"
+    - "Support GitHub Pages deployment"
+
+  non_functional:
+    - "Page load time under 3 seconds"
+    - "Responsive design for mobile and desktop"
+    - "Accessibility compliance (WCAG 2.1 AA)"
+    - "SEO optimization"
+
+architecture:
+  framework: "Docusaurus v3"
+  components:
+    - "Chatbot.tsx: Embedded chat widget with text selection"
+    - "TextSelectionPopup.tsx: Popup for selected text explanation"
+    - "PersonalizeButton.tsx: User preference customization"
+    - "TranslateToggle.tsx: Language switching functionality"
+    - "Theme components: Custom styling and layouts"
+
+technology_stack:
+  framework: "Docusaurus v3"
+  language: "TypeScript/JavaScript"
+  styling: "CSS Modules, Tailwind CSS"
+  deployment: "GitHub Pages"
+
+components:
+  - name: "chatbot_widget"
+    description: "Embedded RAG chatbot with Ask and Explain Selection buttons"
+    files:
+      - "frontend/src/components/Chatbot.tsx"
+      - "frontend/src/components/Chatbot.css"
+    features:
+      - "Floating widget design"
+      - "Real-time messaging"
+      - "Text selection context"
+      - "Source citations"
+
+  - name: "text_selection_popup"
+    description: "Popup that appears when user selects text to explain"
+    files:
+      - "frontend/src/components/TextSelectionPopup.tsx"
+    features:
+      - "Context-aware explanations"
+      - "Seamless integration with chatbot"
+
+  - name: "personalization"
+    description: "User preference and personalization features"
+    files:
+      - "frontend/src/components/PersonalizeButton.tsx"
+    features:
+      - "Learning path customization"
+      - "Experience level tracking"
+      - "Progress monitoring"
+
+  - name: "translation"
+    description: "Multilingual support with toggle functionality"
+    files:
+      - "frontend/src/components/TranslateToggle.tsx"
+    features:
+      - "English, Urdu, Roman Urdu support"
+      - "Content translation"
+      - "UI language switching"
+
+integration_points:
+  - "Backend API for RAG queries (/api/query)"
+  - "User context API for personalization"
+  - "Translation API for content localization"
+
+security:
+  - "XSS protection for user-generated content"
+  - "CSP headers for script security"
+  - "Secure API communication"
+
+performance:
+  - "Bundle size under 500KB"
+  - "Image optimization with lazy loading"
+  - "Code splitting for faster initial load"
+
+testing:
+  - "Unit tests for React components"
+  - "Integration tests for API calls"
+  - "E2E tests for user flows"
+  - "Accessibility testing"
+
+deployment:
+  - "GitHub Pages static hosting"
+  - "CDN for asset delivery"
+  - "Version-specific builds"
+
+dependencies:
+  - "docusaurus v3"
+  - "react"
+  - "typescript"
+  - "tailwindcss"

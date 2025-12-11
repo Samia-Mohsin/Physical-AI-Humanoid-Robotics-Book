@@ -1,0 +1,110 @@
+# Feature Specification: Detailed Auth & Personalization Implementation
+
+**Feature Branch**: `12-auth-personalization-detailed`
+**Created**: 2025-12-10
+**Status**: Draft
+**Input**: User description: "component: auth_personalization
+constitution: true
+features:
+  - better_auth: email_password + neon_storage
+  - signup_questions:
+      software_bg: [Beginner, Intermediate, Advanced]
+      hardware_bg: [None, Basic, Advanced]
+  - personalization_logic: openai_adapt  # Simplify/add code based on bg
+  - endpoint: /personalize GET {chapter, user_id}  # Returns modified MDX
+  - button: chapter_start_personalize  # Frontend toggle
+output_dir: backend/app/routers/auth.py + frontend/src/components/PersonalizeButton.tsx"
+
+## User Scenarios & Testing *(mandatory)*
+
+### User Story 1 - Personalized Learning Experience (Priority: P1)
+
+As a new user signing up for the Physical AI & Humanoid Robotics course, I want to provide my software and hardware background during registration, so that the content can be personalized to match my experience level and learning needs.
+
+**Why this priority**: This is the core personalization feature that enables tailored learning experiences based on user background.
+
+**Independent Test**: When I sign up and provide my background information, the system uses this data to adapt content difficulty and examples throughout my learning journey.
+
+**Acceptance Scenarios**:
+
+1. **Given** I am a new user, **When** I sign up, **Then** I am asked to specify my software background level (Beginner, Intermediate, Advanced)
+2. **Given** I am a new user, **When** I sign up, **Then** I am asked to specify my hardware background level (None, Basic, Advanced)
+3. **Given** I have provided my background information, **When** I access course content, **Then** the content is adapted to my experience level
+
+---
+
+### User Story 2 - Secure Authentication (Priority: P1)
+
+As a user, I want to securely sign up and log in using email and password with my data stored in Neon Postgres, so that my personal information and learning progress are protected and persisted.
+
+**Why this priority**: Secure authentication is fundamental to any learning platform that stores user data and personalization settings.
+
+**Independent Test**: Users can register with email/password and securely log in with their credentials stored in Neon Postgres.
+
+**Acceptance Scenarios**:
+
+1. **Given** I am a new user, **When** I register with email and password, **Then** my account is created with secure password storage in Neon Postgres
+2. **Given** I have an account, **When** I log in with correct credentials, **Then** I am authenticated and can access personalized content
+3. **Given** I attempt to log in with incorrect credentials, **When** I submit login, **Then** I receive an appropriate error message
+
+---
+
+### User Story 3 - Dynamic Content Personalization (Priority: P2)
+
+As a learner, I want to toggle personalization on/off for specific chapters, so that I can control how the content is adapted to my background and preferences.
+
+**Why this priority**: Giving users control over personalization allows them to customize their learning experience based on their current needs.
+
+**Independent Test**: Users can use a toggle button to enable/disable personalization for specific chapters and see immediate content changes.
+
+**Acceptance Scenarios**:
+
+1. **Given** I am viewing a chapter, **When** I click the personalization toggle, **Then** the content is modified based on my background information
+2. **Given** I have enabled personalization, **When** I navigate to different chapters, **Then** the personalization settings persist
+3. **Given** I want to see original content, **When** I disable personalization, **Then** the content reverts to the default version
+
+---
+
+### Edge Cases
+
+- What happens when Neon Postgres is temporarily unavailable during authentication?
+- How does the system handle users who skip background questions during signup?
+- What happens when OpenAI service is unavailable for content adaptation?
+- How does the system handle concurrent personalization requests for the same user?
+- What happens when user background information changes over time?
+
+## Requirements *(mandatory)*
+
+### Functional Requirements
+
+- **FR-001**: System MUST implement Better Auth with email/password authentication
+- **FR-002**: System MUST store user data in Neon Postgres database
+- **FR-003**: System MUST prompt new users to specify software background as one of: [Beginner, Intermediate, Advanced]
+- **FR-004**: System MUST prompt new users to specify hardware background as one of: [None, Basic, Advanced]
+- **FR-005**: System MUST implement personalization logic using OpenAI to adapt content based on user background
+- **FR-006**: System MUST provide a /personalize GET endpoint accepting chapter and user_id parameters
+- **FR-007**: System MUST return modified MDX content from the /personalize endpoint based on user background
+- **FR-008**: System MUST provide a frontend button to toggle personalization at the start of each chapter
+- **FR-009**: System MUST adapt content difficulty based on user's specified background levels
+- **FR-010**: System MUST simplify code examples for beginners and add advanced code for experts
+- **FR-011**: System MUST persist personalization settings across user sessions
+- **FR-012**: System MUST provide a default experience when personalization is disabled
+
+### Key Entities
+
+- **User Profile**: Authentication credentials and background information (software/hardware experience levels)
+- **Personalization Settings**: User preferences for content adaptation stored in Neon Postgres
+- **Content Adaptation**: Modified MDX content generated based on user background using OpenAI
+- **Personalization Toggle**: Frontend control allowing users to enable/disable personalization
+
+## Success Criteria *(mandatory)*
+
+### Measurable Outcomes
+
+- **SC-001**: 100% of new users complete background questionnaire during signup
+- **SC-002**: Authentication system successfully processes 99% of login attempts under normal conditions
+- **SC-003**: Content personalization adapts successfully for 95% of chapter requests
+- **SC-004**: Personalized content loads within 2 seconds of the /personalize endpoint request
+- **SC-005**: At least 80% of users engage with the personalization toggle feature
+- **SC-006**: Content adaptation accurately matches user background levels in 90% of cases
+- **SC-007**: System maintains user personalization settings across 30+ days of inactivity
